@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -33,6 +34,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -41,15 +45,19 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-auth:23.0.0")
+    implementation("com.google.android.material:material:1.12.0")
+// Import the BoM for the Firebase platform
+    //noinspection BomWithoutPlatform
+    implementation("com.google.firebase:firebase-bom:33.4.0")
+// Add the dependency for the Firebase Authentication library
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("androidx.annotation:annotation:1.6.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.6")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-<<<<<<< HEAD
 }
 
-dependencies {
-    implementation("com.google.android.material:material:1.9.0")
-}
-=======
-}
->>>>>>> 70a8e96 (commit test)
