@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1071811776994",
+    "project_id": "petopia-befb5",
+    "storage_bucket": "petopia-befb5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071811776994:android:ea009d956311247d32e9bb",
+        "android_client_info": {
+          "package_name": "edu.sswu.petopia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKZ1yOvJgPUivA-NTKOEvEBVDJGCHlKaU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
