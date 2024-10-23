@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
+import androidx.lifecycle.viewModelScope
 import edu.sswu.petopia.data.LoginRepository
 import edu.sswu.petopia.data.Result
 
 import edu.sswu.petopia.R
+import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -19,6 +21,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun login(username: String, password: String) {
         // can be launched in a separate asynchronous job
+        viewModelScope.launch {
         val result = loginRepository.login(username, password)
 
         if (result is Result.Success) {
@@ -26,7 +29,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                 LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
         } else {
             _loginResult.value = LoginResult(error = R.string.login_failed)
-        }
+        }}
     }
 
     fun loginDataChanged(username: String, password: String) {
