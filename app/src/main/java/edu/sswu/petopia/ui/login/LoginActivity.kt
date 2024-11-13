@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import edu.sswu.petopia.MainActivity
 import edu.sswu.petopia.R
+import edu.sswu.petopia.register.RegisterActivity
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.et_login_email)
         val passwordEditText = findViewById<EditText>(R.id.et_login_password)
         val loginButton = findViewById<Button>(R.id.btn_login)
+        val registerTextView = findViewById<TextView>(R.id.tv_register)
 
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString()
@@ -44,5 +47,12 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "이메일과 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
             }
         }
+
+        // 회원가입 화면으로 이동하는 클릭 리스너 추가
+        registerTextView.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
+
