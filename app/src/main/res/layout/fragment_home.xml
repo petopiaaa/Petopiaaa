@@ -1,152 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <!-- 상단 사용자 정보 영역 -->
+
+    <!-- 메인 컨텐츠 -->
     <LinearLayout
-        android:id="@+id/user_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:background="#FFFFFF">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hi, Oliver!"
-            android:textSize="18sp"
-            android:layout_marginBottom="4dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bangalore, India"
-            android:textSize="14sp"
-            android:gravity="end"/>
-    </LinearLayout>
+        android:padding="16dp">
 
-    <!-- Your Pets 섹션 -->
-    <LinearLayout
-        android:id="@+id/pets_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Pets"
-            android:textSize="18sp"
-            android:layout_marginBottom="4dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Add Pet"
-            android:layout_marginLeft="150dp"/>
+        <!-- 상단 인사말 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:background="#FFFFFF"
+            android:elevation="4dp">
+
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_profile_main"
+                android:contentDescription="Profile Image"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/circle_background" />
+
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"/>
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:text="  Hi, 희원님!"
+                android:textColor="#000"
+                android:textSize="18sp" />
+
+            <!-- 벨 모양 알림 아이콘 -->
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_bell"
+                android:contentDescription="알림 버튼"
+                android:padding="8dp" />
         </LinearLayout>
-    </LinearLayout>
 
-    <!-- Services 섹션 -->
-    <LinearLayout
-        android:id="@+id/services_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF">
+        <!-- 날씨 정보 -->
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:padding="16dp"
+            android:text="날씨 정보"
+            android:textColor="#000"
+            android:background="#FFFFFF"
+            android:elevation="2dp" />
+
+        <!-- 카테고리 그리드 -->
+        <GridLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Services"
-            android:textSize="18sp"
-            android:layout_marginBottom="4dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Daycare"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="#E8F7FE"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Health"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="#EAF9F2"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Grooming"
-            android:layout_marginBottom="8dp"
-            android:backgroundTint="#F0F3FE"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tracking"
-            android:backgroundTint="#FAF2EB"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:columnCount="3"
+            android:padding="60dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp">
+
+            <!-- 카테고리 아이템 반복 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="30dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_korean_food"
+                    android:contentDescription="Korean Food" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="한식"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="30dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_japanese_food"
+                    android:contentDescription="Japanese Food" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="일식"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="30dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_western_food"
+                    android:contentDescription="Western Food" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="양식"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="30dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_chinese_food"
+                    android:contentDescription="Chinese Food" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="중식"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="30dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_pub"
+                    android:contentDescription="Pub" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="펍"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="30dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_cafe"
+                    android:contentDescription="Cafe" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="카페"
+                    android:textSize="14sp"
+                    android:textColor="#000"
+                    android:gravity="center" />
+            </LinearLayout>
+        </GridLayout>
     </LinearLayout>
 
-    <!-- Plans 섹션 -->
-    <LinearLayout
-        android:id="@+id/plans_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Plans"
-            android:layout_marginBottom="8dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Location"/>
-    </LinearLayout>
-
-    <!-- Pet Care Nearby You 섹션 -->
-    <LinearLayout
-        android:id="@+id/pet_care_section"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#FFFFFF">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Moon Pet Hospital"
-            android:layout_marginBottom="8dp"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Location"/>
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>
