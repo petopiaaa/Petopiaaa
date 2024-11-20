@@ -17,6 +17,82 @@
             android:orientation="vertical"
             android:paddingVertical="5dp">
 
+            <!-- Header Line -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Profile"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <!-- Header Section1 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:padding="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_pfuser" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:paddingStart="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="최희원님 마이페이지"
+                            android:textSize="24sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="won030104@naver.com"
+                            android:textColor="#A9A9A9" />
+
+                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/editUser"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_pfedit"
+                        android:contentDescription="Edit UserProfile" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
             <!-- Header Section -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,7 +110,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_pfdog" />
+                        android:src="@drawable/ic_pfpet" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -59,39 +135,77 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/editPet"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:src="@drawable/ic_pfedit"
                         android:contentDescription="Edit Profile" />
                 </LinearLayout>
 
+
+
                 <!-- Gender and Age Section -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingVertical="8dp"
+                    android:paddingVertical="1dp"
                     android:gravity="center_horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Female"
+                        android:orientation="vertical"
                         android:background="#FBF3EC"
-                        android:padding="8dp"
-                        android:textColor="@color/black" />
+                        android:layout_weight="1"
+                        android:layout_margin="5dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gender"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female"
+                            android:padding="8dp"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="1 Years"
                         android:background="#F0F3FE"
-                        android:padding="8dp"
-                        android:layout_marginStart="16dp"
-                        android:textColor="@color/black" />
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Age"
+                            android:padding="8dp"
+                            android:layout_marginStart="16dp"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 Years"
+                            android:padding="8dp"
+                            android:layout_marginStart="16dp"
+                            android:textColor="@color/black" />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
+
+
+
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -125,10 +239,8 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-
-
             </LinearLayout>
+
             <!-- Plans Section -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -142,7 +254,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Plans With Sky"
+                    android:text="저장 목록"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/black" />
@@ -154,127 +266,24 @@
                     android:contentDescription="Add Plan" />
             </LinearLayout>
 
-            <!-- Plans List -->
+            <!-- Logout button -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingVertical="16dp"
-                android:background="#FFFFFF"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="16dp"
+                android:gravity="center">
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Vaccination 1"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Moon Pet Hospital"
-                    android:textColor="#A9A9A9" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="12th Sept"
-                    android:textColor="@color/black"
-                    android:textStyle="bold" />
+                    android:text="로그아웃"
+                    android:backgroundTint="#FBF0C2"
+                    android:textColor="@android:color/black" />
             </LinearLayout>
 
-            <!-- Orders Section -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="#FFFFFF"
-                android:layout_marginTop="16dp">
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Orders For 최똘이"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:text="See All"
-                        android:backgroundTint="@color/white"
-                        android:textColor="@color/black" />
-
-
-                </LinearLayout>
-
-
-
-                <!-- Order Card -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp"
-                    android:gravity="center_vertical">
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        android:paddingStart="8dp"
-                        android:background="#FBF0C2">
-
-                        <ImageView
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:background="#F1E19C" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Whiskers - Dog Food"
-                                android:textColor="@color/black" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Arrive by 8th Sept"
-                                android:textColor="#A9A9A9" />
-                            <Button
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Track Order"
-                                android:backgroundTint="#F1E19C"
-                                android:textColor="@android:color/black" />
-
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
-
-
-            </LinearLayout>
 
         </LinearLayout>
 
