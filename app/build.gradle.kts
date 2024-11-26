@@ -1,4 +1,10 @@
 import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
+import java.util.Properties
+import java.io.FileInputStream
+
+val properties = Properties().apply {
+    load(FileInputStream(rootProject.file("local.properties")))
+}
 
 plugins {
     id("com.android.application")
@@ -23,6 +29,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders["NAVERMAP_CLIENT_ID"] = properties.getProperty("NAVERMAP_CLIENT_ID")
+
     }
 
     buildTypes {
@@ -43,6 +51,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig =true
     }
 }
 
@@ -68,4 +77,6 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation("com.naver.maps:map-sdk:3.19.1")
+
 }
