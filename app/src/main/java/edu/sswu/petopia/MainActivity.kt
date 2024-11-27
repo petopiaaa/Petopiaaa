@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
                 R.id.menu_home -> HomeFragment()
                 R.id.menu_search -> SearchFragment()
                 R.id.menu_nearby -> NearbyFragment()
-                R.id.menu_map -> MapFragment()
                 R.id.menu_profile -> ProfileFragment()
                 else -> HomeFragment()
             }
