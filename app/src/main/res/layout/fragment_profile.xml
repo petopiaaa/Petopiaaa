@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingVertical="5dp">
+            android:paddingVertical="8dp">
 
             <!-- Header Line -->
             <LinearLayout
@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:layout_marginBottom="10dp"
                 android:background="#FFFFFF">
 
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center_vertical"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:layout_marginBottom="10dp"
                 android:background="#FFFFFF">
 
@@ -66,6 +66,7 @@
                         android:paddingStart="8dp">
 
                         <TextView
+                            android:id="@+id/nameTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="최희원님 마이페이지"
@@ -74,6 +75,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/emailTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="won030104@naver.com"
@@ -120,6 +122,7 @@
                         android:paddingStart="8dp">
 
                         <TextView
+                            android:id="@+id/petNameTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="최똘이"
@@ -128,6 +131,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/petBreedTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="제페니즈 스피츠"
@@ -167,6 +171,7 @@
                             android:padding="8dp"
                             android:textColor="@color/black" />
                         <TextView
+                            android:id="@+id/petGenderTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Female"
@@ -191,6 +196,7 @@
                             android:layout_marginStart="16dp"
                             android:textColor="@color/black" />
                         <TextView
+                            android:id="@+id/petAgeTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="1 Years"
@@ -202,9 +208,6 @@
 
 
                 </LinearLayout>
-
-
-
 
 
                 <LinearLayout
@@ -246,9 +249,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingVertical="5dp"
+                android:padding="7dp"
                 android:background="#FFFFFF"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="8dp">
 
                 <TextView
                     android:layout_width="0dp"
@@ -276,6 +279,7 @@
                 android:gravity="center">
 
                 <Button
+                    android:id="@+id/logoutButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="로그아웃"

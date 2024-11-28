@@ -45,17 +45,20 @@
             android:src="@drawable/ic_pfadd2"
             android:layout_gravity="center"/>
         <EditText
+            android:id="@+id/petNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:hint="이름" />
 
         <EditText
+            android:id="@+id/petAgeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:hint="생년월일" />
         <EditText
+            android:id="@+id/petBreedEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
@@ -66,6 +69,7 @@
             android:textSize="20dp"
             android:hint="몸무게" />
         <EditText
+            android:id="@+id/petGenderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"

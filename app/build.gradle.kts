@@ -17,10 +17,6 @@ android {
     namespace = "edu.sswu.petopia"
     compileSdk = 34
 
-    viewBinding {
-        var enabled = true
-    }
-
     defaultConfig {
         applicationId = "edu.sswu.petopia"
         minSdk = 24

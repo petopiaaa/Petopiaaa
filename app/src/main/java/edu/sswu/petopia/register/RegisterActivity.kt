@@ -24,11 +24,18 @@ class RegisterActivity : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.et_register_email)
         val passwordEditText = findViewById<EditText>(R.id.et_register_password)
         val registerButton = findViewById<Button>(R.id.btn_register)
+        val loginTextView = findViewById<TextView>(R.id.tv_login)
 
+        // 로그인 화면으로 이동하는 클릭 리스너 설정 (독립적으로 동작)
+        loginTextView.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 회원가입 버튼 클릭 리스너
         registerButton.setOnClickListener {
             val email = emailEditText.text.toString()
             val password = passwordEditText.text.toString()
-            val loginTextView = findViewById<TextView>(R.id.tv_login)
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 auth.createUserWithEmailAndPassword(email, password)
@@ -44,12 +51,6 @@ class RegisterActivity : AppCompatActivity() {
                     }
             } else {
                 Toast.makeText(this, "이메일과 비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
-            }
-
-            // 로그인 화면으로 이동하는 클릭 리스너 추가
-            loginTextView.setOnClickListener {
-                val intent = Intent(this, LoginActivity::class.java)
-                startActivity(intent)
             }
         }
     }
