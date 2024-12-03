@@ -3,6 +3,7 @@ package edu.sswu.petopia.fragment
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,9 +23,6 @@ import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import edu.sswu.petopia.R
-import android.util.Log
-import com.google.firebase.firestore.IgnoreExtraProperties
-
 
 // Firestore 데이터 모델 정의
 data class Restaurants(
@@ -35,11 +33,9 @@ data class Restaurants(
     val description: String? = null,
     val hours: String? = null,
     val menu: String? = null,
-    val latitude: Double = 0.0, // nullable로 변경
-    val longitude: Double = 0.0 // nullable로 변경
+    val latitude: Double = 0.0,
+    val longitude: Double = 0.0
 )
-
-
 
 class NearbyFragment : Fragment(), OnMapReadyCallback {
 
@@ -50,6 +46,8 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
     private lateinit var infoName: TextView
     private lateinit var infoAddress: TextView
     private lateinit var infoCategory: TextView
+
+    private var selectedMarker: Marker? = null // 선택된 마커 추적 변수
 
     // 위치 권한 요청 런처
     private val requestPermissionLauncher = registerForActivityResult(
@@ -125,11 +123,7 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
                 for (document in result) {
                     try {
                         val restaurant = document.toObject(Restaurants::class.java)
-                        if (restaurant.latitude != null && restaurant.longitude != null) {
-                            addMarker(restaurant)
-                        } else {
-                            Log.e("FirestoreMappingError", "Latitude or Longitude is null for document: ${document.id}")
-                        }
+                        addMarker(restaurant)
                     } catch (e: Exception) {
                         Log.e("FirestoreMappingError", "Error mapping document: ${document.id}", e)
                     }
@@ -140,36 +134,52 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
-
-
     private fun addMarker(restaurants: Restaurants) {
-        if (restaurants.latitude != null && restaurants.longitude != null) {
-            val marker = Marker()
-            marker.position = LatLng(restaurants.latitude, restaurants.longitude)
-            marker.map = naverMap
-            marker.captionText = restaurants.name
+        val marker = Marker()
+        marker.position = LatLng(restaurants.latitude, restaurants.longitude)
+        marker.map = naverMap
+        marker.captionText = restaurants.name
 
-            // 카테고리에 따른 아이콘 설정
-            marker.icon = when (restaurants.category) {
-                "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)
-                "카페" -> OverlayImage.fromResource(R.drawable.ic_cafe)
-                "일식" -> OverlayImage.fromResource(R.drawable.ic_japanese_food)
-                "한식" -> OverlayImage.fromResource(R.drawable.ic_korean_food)
-                "중식" -> OverlayImage.fromResource(R.drawable.ic_chinese_food)
-                "주점" -> OverlayImage.fromResource(R.drawable.ic_pub)
-                else -> OverlayImage.fromResource(R.drawable.ic_default)
+        // 카테고리에 따른 기본 아이콘 설정
+        marker.icon = when (restaurants.category) {
+            "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)
+            "카페" -> OverlayImage.fromResource(R.drawable.ic_cafe)
+            "일식" -> OverlayImage.fromResource(R.drawable.ic_japanese_food)
+            "한식" -> OverlayImage.fromResource(R.drawable.ic_korean_food)
+            "중식" -> OverlayImage.fromResource(R.drawable.ic_chinese_food)
+            "주점" -> OverlayImage.fromResource(R.drawable.ic_pub)
+            else -> OverlayImage.fromResource(R.drawable.ic_default)
+        }
+
+        // 마커 클릭 이벤트
+        marker.setOnClickListener {
+            // 이전 선택된 마커 초기화
+            selectedMarker?.let {
+                it.icon = when (restaurants.category) {
+                    "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)
+                    "카페" -> OverlayImage.fromResource(R.drawable.ic_cafe)
+                    "일식" -> OverlayImage.fromResource(R.drawable.ic_japanese_food)
+                    "한식" -> OverlayImage.fromResource(R.drawable.ic_korean_food)
+                    "중식" -> OverlayImage.fromResource(R.drawable.ic_chinese_food)
+                    "주점" -> OverlayImage.fromResource(R.drawable.ic_pub)
+                    else -> OverlayImage.fromResource(R.drawable.ic_default)
+                }
             }
 
-            // 마커 클릭 이벤트
-            marker.setOnClickListener {
-                infoPanel.visibility = View.VISIBLE
-                infoName.text = restaurants.name
-                infoAddress.text = restaurants.address ?: "주소 없음"
-                infoCategory.text = restaurants.category ?: "카테고리 없음"
-                true
-            }
-        } else {
-            Log.e("addMarkerError", "Latitude or Longitude is null for restaurant: ${restaurants.name}")
+            // 선택된 마커 강조
+            marker.icon = OverlayImage.fromResource(R.drawable.ic_selected)
+            selectedMarker = marker
+
+            // 카메라 이동
+            val cameraUpdate = CameraUpdate.scrollTo(marker.position)
+            naverMap.moveCamera(cameraUpdate)
+
+            // 정보 패널 업데이트
+            infoPanel.visibility = View.VISIBLE
+            infoName.text = restaurants.name
+            infoAddress.text = restaurants.address ?: "주소 없음"
+            infoCategory.text = restaurants.category ?: "카테고리 없음"
+            true
         }
     }
 

@@ -76,7 +76,4 @@ dependencies {
     implementation("com.naver.maps:map-sdk:3.19.1")
     implementation ("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.google.firebase:firebase-firestore-ktx")
-
-
-
 }
