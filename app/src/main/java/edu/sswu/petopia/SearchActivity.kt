@@ -82,7 +82,7 @@ class SearchActivity : AppCompatActivity() {
             if (keyword.isNotEmpty()) {
                 viewModel.filterByKeywordAndRegion(keyword, selectedRegions)
             } else {
-                Toast.makeText(this, "검색어를 입력하세요", Toast.LENGTH_SHORT).show()
+                viewModel.filterByRegion(selectedRegions) // 지역 필터만 적용
             }
         }
     }
@@ -107,6 +107,7 @@ class SearchActivity : AppCompatActivity() {
                 searchBar.setText(keyword) // 검색어를 EditText에 설정
                 viewModel.filterByKeywordAndRegion(keyword, selectedRegions)
             }
+            else -> viewModel.filterByRegion(selectedRegions) // 기본적으로 지역 필터 적용
         }
     }
 
@@ -149,7 +150,11 @@ class SearchActivity : AppCompatActivity() {
             val currentKeyword = searchBar.text.toString()
 
             // 키워드와 지역 필터를 동시에 적용
-            viewModel.filterByKeywordAndRegion(currentKeyword, selectedRegions)
+            if (currentKeyword.isNotEmpty()) {
+                viewModel.filterByKeywordAndRegion(currentKeyword, selectedRegions)
+            } else {
+                viewModel.filterByRegion(selectedRegions) // 지역 필터만 적용
+            }
 
             dialog.dismiss()
         }
@@ -166,4 +171,3 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 }
-

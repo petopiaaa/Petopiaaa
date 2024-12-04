@@ -51,6 +51,7 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
             filteredRestaurants.value = data.filter { it.location in regions }
         }
     }
+
     fun filterByKeyword(keyword: String) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { it.name.contains(keyword, ignoreCase = true) }
@@ -61,6 +62,7 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
         filteredRestaurants.value = data // 전체 데이터를 설정
     }
 
+    // 추가된 메서드
     fun filterByKeywordAndRegion(keyword: String, regions: List<String>) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { restaurant ->
@@ -70,11 +72,22 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
-
     fun filterByCategoryAndRegion(category: String, regions: List<String>) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { restaurant ->
-            restaurant.category == category && (restaurant.location in regions)
+            // 카테고리와 지역 필터 동시 적용
+            restaurant.category == category &&
+                    (regions.isEmpty() || restaurant.location in regions)
+        }
+    }
+
+    fun filterByAllFilters(keyword: String?, category: String?, regions: List<String>) {
+        val data = restaurants.value ?: return
+        filteredRestaurants.value = data.filter { restaurant ->
+            val matchesKeyword = keyword.isNullOrEmpty() || restaurant.name.contains(keyword, ignoreCase = true)
+            val matchesCategory = category.isNullOrEmpty() || restaurant.category == category
+            val matchesRegion = regions.isEmpty() || restaurant.location in regions
+            matchesKeyword && matchesCategory && matchesRegion
         }
     }
 }

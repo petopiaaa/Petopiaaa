@@ -40,16 +40,11 @@
                 android:textSize="18sp" />
 
             <!-- 벨 모양 알림 아이콘 -->
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_bell"
-                android:contentDescription="알림 버튼"
-                android:padding="8dp" />
         </LinearLayout>
 
         <!-- 날씨 정보 -->
         <TextView
+            android:id="@+id/weatherTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

@@ -1,4 +1,3 @@
-import org.apache.tools.ant.util.JavaEnvUtils.VERSION_1_8
 import java.util.Properties
 import java.io.FileInputStream
 
@@ -12,7 +11,6 @@ plugins {
     id("com.google.gms.google-services")
 }
 
-
 android {
     namespace = "edu.sswu.petopia"
     compileSdk = 34
@@ -25,7 +23,12 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Add NAVER MAP Client ID from local.properties
         manifestPlaceholders["NAVERMAP_CLIENT_ID"] = properties.getProperty("NAVERMAP_CLIENT_ID")
+
+        // Add OpenWeather API Key to BuildConfig
+        buildConfigField("String", "OPENWEATHER_API_KEY", "\"${properties.getProperty("OPENWEATHER_API_KEY")}\"")
 
     }
 
@@ -47,7 +50,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        buildConfig =true
+        buildConfig = true
     }
 }
 
@@ -73,9 +76,14 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0")
     implementation("com.naver.maps:map-sdk:3.19.1")
-    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.google.firebase:firebase-firestore-ktx")
+
+    // Retrofit and Gson Converter
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
+
