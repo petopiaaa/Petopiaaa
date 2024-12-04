@@ -55,6 +55,8 @@ dependencies {
     // Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
 
+    implementation("io.coil-kt:coil:2.2.2")
+
     // Firebase Auth with KTX support (version handled by BoM)
     implementation("com.google.firebase:firebase-auth-ktx")
 

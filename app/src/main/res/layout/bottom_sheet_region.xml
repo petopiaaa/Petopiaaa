@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지역 선택"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/region_dobong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="도봉구" />
+
+        <RadioButton
+            android:id="@+id/region_seongbuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="성북구" />
+
+        <RadioButton
+            android:id="@+id/region_nowon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="노원구" />
+
+        <RadioButton
+            android:id="@+id/region_gangbuk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="강북구" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/apply_region_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="적용하기" />
+</LinearLayout>

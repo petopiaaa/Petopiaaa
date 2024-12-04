@@ -37,6 +37,9 @@
             android:name="edu.sswu.petopia.MainActivity"
             android:exported="true" />
 
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".DetailActivity" />
+
         <!-- EditUserActivity 선언 -->
         <activity android:name="edu.sswu.petopia.ui.profile.EditUserActivity" />
         <!-- EditPetActivity 선언 -->

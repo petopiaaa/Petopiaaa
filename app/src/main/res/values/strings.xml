@@ -17,7 +17,7 @@
     <string name="search">검색</string>
     <string name="search_hint">키워드를 입력해주세요.</string>
     <string name="keyword_region">지역</string>
-    <string name="keyword_menu">메뉴</string>
+    <string name="keyword_outdoor">공간</string>
     <string name="keyword_weight">몸무게</string>
     <string name="recommendation_title">추천 장소</string>
 </resources>

@@ -79,6 +79,7 @@
                 android:layout_margin="30dp">
 
                 <ImageView
+                    android:id="@+id/icon_korean_food"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_korean_food"
@@ -101,6 +102,7 @@
                 android:layout_margin="30dp">
 
                 <ImageView
+                    android:id="@+id/icon_japanese_food"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_japanese_food"
@@ -123,6 +125,7 @@
                 android:layout_margin="30dp">
 
                 <ImageView
+                    android:id="@+id/icon_western_food"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_western_food"
@@ -145,6 +148,7 @@
                 android:layout_margin="30dp">
 
                 <ImageView
+                    android:id="@+id/icon_chinese_food"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_chinese_food"
@@ -167,6 +171,7 @@
                 android:layout_margin="30dp">
 
                 <ImageView
+                    android:id="@+id/icon_pub"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_pub"
@@ -189,6 +194,7 @@
                 android:layout_margin="30dp">
 
                 <ImageView
+                    android:id="@+id/icon_cafe"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:src="@drawable/ic_cafe"
