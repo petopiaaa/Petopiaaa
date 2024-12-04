@@ -1,164 +1,189 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:padding="16dp"
+    tools:context="edu.sswu.petopia.SearchFragment">
 
-    <!-- 검색창 -->
-    <LinearLayout
-        android:id="@+id/search_layout"
+    <!-- 기존 ScrollView 및 내용 -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        android:background="#FFFFFF"
-        android:elevation="4dp">
-
-        <!-- 뒤로 가기 버튼 -->
-        <ImageView
-            android:id="@+id/back_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_back"
-            android:contentDescription="Back Button"
-            android:padding="8dp" />
-
-        <!-- 검색창 -->
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="어디를 찾고 계신가요?"
-            android:padding="8dp"
-            android:textColor="#000"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:id="@+id/search_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/ic_search"
-            android:contentDescription="Search Button"
-            android:padding="8dp" />
-    </LinearLayout>
-
-    <!-- 카테고리 필터 -->
-    <HorizontalScrollView
-        android:id="@+id/category_filter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:background="#FFFFFF"
-        android:elevation="2dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingVertical="5dp">
 
-            <!-- 각 카테고리 버튼 -->
-            <Button
-                android:id="@+id/btn_all"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="전체" />
-
-            <Button
-                android:id="@+id/btn_korean"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="한식" />
-
-            <Button
-                android:id="@+id/btn_japanese"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="일식" />
-
-            <!-- 버튼 추가 -->
-            <Button
-                android:id="@+id/btn_western"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="양식" />
-
-            <Button
-                android:id="@+id/btn_chinese"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="중식" />
-
-            <Button
-                android:id="@+id/btn_pub"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="펍" />
-
-            <Button
-                android:id="@+id/btn_cafe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:text="카페" />
+            <!-- 기존 검색창, 키워드 섹션, 추천 섹션 등 -->
+            <!-- ... (생략: 기존 코드 유지) -->
         </LinearLayout>
-    </HorizontalScrollView>
+    </ScrollView>
 
-    <!-- 필터링 조건 -->
+    <!-- 새로 추가된 레이아웃 -->
     <LinearLayout
-        android:id="@+id/filter_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        android:background="#F9F9F9">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_region"
-            android:layout_width="0dp"
+        <!-- 검색창 -->
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="지역" />
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:background="#FFFFFF"
+            android:elevation="4dp">
 
-        <Button
-            android:id="@+id/btn_pet"
-            android:layout_width="0dp"
+            <ImageView
+                android:id="@+id/back_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_back"
+                android:contentDescription="Back Button"
+                android:padding="8dp" />
+
+            <EditText
+                android:id="@+id/search_bar"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="@string/search_hint"
+                android:padding="8dp"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_search" />
+        </LinearLayout>
+
+        <!-- 카테고리 필터 -->
+        <HorizontalScrollView
+            android:id="@+id/category_filter"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="공간" />
+            android:padding="8dp"
+            android:background="#FFFFFF"
+            android:elevation="2dp">
 
-        <Button
-            android:id="@+id/btn_weight"
-            android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- 각 카테고리 버튼 -->
+                <Button
+                    android:id="@+id/btn_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="전체" />
+
+                <Button
+                    android:id="@+id/btn_korean"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="한식" />
+
+                <Button
+                    android:id="@+id/btn_japanese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="일식" />
+
+                <Button
+                    android:id="@+id/btn_western"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="양식" />
+
+                <Button
+                    android:id="@+id/btn_chinese"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="중식" />
+
+                <Button
+                    android:id="@+id/btn_pub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="펍" />
+
+                <Button
+                    android:id="@+id/btn_cafe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="카페" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- 필터링 조건 -->
+        <LinearLayout
+            android:id="@+id/filter_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="몸무게" />
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:background="#F9F9F9">
 
+            <Button
+                android:id="@+id/btn_region"
+                android:layout_width="10dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="지역" />
+
+            <Button
+                android:id="@+id/btn_pet"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="공간" />
+
+            <Button
+                android:id="@+id/btn_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="몸무게" />
+        </LinearLayout>
+
+        <!-- 선택된 필터 -->
+        <TextView
+            android:id="@+id/selected_filters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:visibility="gone"
+            android:background="#F3F3F3"
+            android:text="선택된 필터: 없음" />
+
+        <!-- RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/result_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:clipToPadding="false" />
     </LinearLayout>
-
-    <!-- 선택된 필터 -->
-    <TextView
-        android:id="@+id/selected_filters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="14sp"
-        android:textColor="#333333"
-        android:visibility="gone"
-        android:background="#F3F3F3"
-        android:text="선택된 필터: 없음" />
-
-    <!-- RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/result_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="8dp"
-        android:clipToPadding="false" />
-</LinearLayout>
+</FrameLayout>

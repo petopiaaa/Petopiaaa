@@ -62,25 +62,25 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
         filteredRestaurants.value = data // 전체 데이터를 설정
     }
 
-    // 추가된 메서드
+    // 키워드와 지역 필터 적용
     fun filterByKeywordAndRegion(keyword: String, regions: List<String>) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { restaurant ->
-            // 키워드와 지역 필터 동시 적용
             restaurant.name.contains(keyword, ignoreCase = true) &&
                     (regions.isEmpty() || restaurant.location in regions)
         }
     }
 
+    // 카테고리와 지역 필터 적용
     fun filterByCategoryAndRegion(category: String, regions: List<String>) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { restaurant ->
-            // 카테고리와 지역 필터 동시 적용
             restaurant.category == category &&
                     (regions.isEmpty() || restaurant.location in regions)
         }
     }
 
+    // 모든 필터를 동시에 적용
     fun filterByAllFilters(keyword: String?, category: String?, regions: List<String>) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { restaurant ->
@@ -88,6 +88,20 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
             val matchesCategory = category.isNullOrEmpty() || restaurant.category == category
             val matchesRegion = regions.isEmpty() || restaurant.location in regions
             matchesKeyword && matchesCategory && matchesRegion
+        }
+    }
+
+    // 최종 필터 메서드
+    fun applyFilters(regions: List<String>?, category: String?, keyword: String?) {
+        val data = restaurants.value ?: return
+
+        filteredRestaurants.value = data.filter { restaurant ->
+            val matchesRegion = regions.isNullOrEmpty() || restaurant.location in regions
+            val matchesCategory = category.isNullOrEmpty() || restaurant.category == category
+            val matchesKeyword = keyword.isNullOrEmpty() || restaurant.name.contains(keyword, ignoreCase = true)
+
+            // 지역, 카테고리, 키워드 필터를 모두 만족해야 결과에 포함
+            matchesRegion && matchesCategory && matchesKeyword
         }
     }
 }

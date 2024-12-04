@@ -22,7 +22,9 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
 
     private val selectedRegions = mutableListOf<String>() // 선택된 지역 필터
-    private lateinit var selectedFiltersTextView: TextView // 선택된 지역 표시 텍스트뷰
+    private lateinit var selectedFiltersTextView: TextView // 선택된 필터 표시 텍스트뷰
+    private var selectedCategory: String? = null // 선택된 카테고리
+    private var selectedKeyword: String? = null // 선택된 키워드
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +43,9 @@ class SearchActivity : AppCompatActivity() {
         regionButton.setOnClickListener {
             showRegionBottomSheet() // 지역 선택 Bottom Sheet 열기
         }
+
+        // 카테고리 버튼 클릭 이벤트 설정
+        setupCategoryButtons()
 
         initRecyclerView()
         initViewModel()
@@ -79,11 +84,8 @@ class SearchActivity : AppCompatActivity() {
 
         searchIcon.setOnClickListener {
             val keyword = searchBar.text.toString()
-            if (keyword.isNotEmpty()) {
-                viewModel.filterByKeywordAndRegion(keyword, selectedRegions)
-            } else {
-                viewModel.filterByRegion(selectedRegions) // 지역 필터만 적용
-            }
+            selectedKeyword = keyword
+            viewModel.applyFilters(selectedRegions, selectedCategory, selectedKeyword)
         }
     }
 
@@ -102,12 +104,30 @@ class SearchActivity : AppCompatActivity() {
         }
 
         when {
-            !category.isNullOrEmpty() -> viewModel.filterByCategoryAndRegion(category, selectedRegions)
+            !category.isNullOrEmpty() -> {
+                selectedCategory = category // 선택된 카테고리 업데이트
+                viewModel.applyFilters(selectedRegions, selectedCategory, searchBar.text.toString())
+            }
             !keyword.isNullOrEmpty() -> {
                 searchBar.setText(keyword) // 검색어를 EditText에 설정
-                viewModel.filterByKeywordAndRegion(keyword, selectedRegions)
+                viewModel.applyFilters(selectedRegions, selectedCategory, keyword)
             }
-            else -> viewModel.filterByRegion(selectedRegions) // 기본적으로 지역 필터 적용
+        }
+    }
+
+    private fun setupCategoryButtons() {
+        val categoryButtons = listOf(
+            Pair(findViewById<Button>(R.id.btn_all), null), // 전체
+            Pair(findViewById<Button>(R.id.btn_korean), "한식"),
+            Pair(findViewById<Button>(R.id.btn_japanese), "일식"),
+            Pair(findViewById<Button>(R.id.btn_western), "양식")
+        )
+
+        categoryButtons.forEach { (button, category) ->
+            button.setOnClickListener {
+                selectedCategory = category // 선택된 카테고리 업데이트
+                viewModel.applyFilters(selectedRegions, selectedCategory, selectedKeyword) // 필터링 적용
+            }
         }
     }
 
@@ -144,17 +164,7 @@ class SearchActivity : AppCompatActivity() {
             if (gangbuk.isChecked) selectedRegions.add("강북구")
 
             updateSelectedFilters()
-
-            // 현재 키워드 가져오기
-            val searchBar: EditText = findViewById(R.id.search_bar)
-            val currentKeyword = searchBar.text.toString()
-
-            // 키워드와 지역 필터를 동시에 적용
-            if (currentKeyword.isNotEmpty()) {
-                viewModel.filterByKeywordAndRegion(currentKeyword, selectedRegions)
-            } else {
-                viewModel.filterByRegion(selectedRegions) // 지역 필터만 적용
-            }
+            viewModel.applyFilters(selectedRegions, selectedCategory, selectedKeyword) // 필터 재적용
 
             dialog.dismiss()
         }
