@@ -179,7 +179,7 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
         marker.position = LatLng(restaurant.latitude, restaurant.longitude)
         marker.map = naverMap
         marker.captionText = restaurant.name
-        marker.tag = restaurant // 마커에 Restaurant 객체 저장
+        marker.tag = restaurant.category // 마커에 Restaurant 객체 저장
 
         marker.icon = when (restaurant.category) {
             "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)
