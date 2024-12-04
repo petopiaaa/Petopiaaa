@@ -50,8 +50,8 @@
             android:layout_height="wrap_content"
             android:text="로그인"
             android:background="@drawable/button_round"
-            android:backgroundTint="#5A4B86"
-            android:textColor="@android:color/white"/>
+            android:backgroundTint="#CEC2F2"
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:id="@+id/tv_register"

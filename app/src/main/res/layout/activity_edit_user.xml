@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
 
         <ImageView
             android:id="@+id/backBtn"
@@ -18,14 +19,16 @@
             android:layout_height="40dp"
             android:src="@drawable/ic_back"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="내 정보 수정"
             android:textSize="24dp"
-            android:layout_gravity="center_horizontal"
-            android:paddingBottom="16dp" />
+            android:textStyle="bold"
+            android:layout_marginTop="7dp"
+            android:paddingBottom="8dp" />
 
 
     </LinearLayout>
@@ -37,26 +40,36 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
 
         <ImageView
+            android:id="@+id/userpfImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_pfadd2"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:scaleType="centerCrop"/>
         <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="이름" />
+            android:hint="이름"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"/>
 
         <EditText
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="이메일" />
+            android:hint="이메일"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"/>
 
 
         <Button
@@ -66,7 +79,8 @@
             android:text="저장하기"
             android:backgroundTint="#FBF0C2"
             android:layout_gravity="center_horizontal"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 

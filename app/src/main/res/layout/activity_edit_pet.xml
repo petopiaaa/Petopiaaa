@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
 
     <ImageView
         android:id="@+id/backBtn"
@@ -18,14 +19,16 @@
         android:layout_height="40dp"
         android:src="@drawable/ic_back"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"/>
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="반려동물 정보 수정"
         android:textSize="24dp"
-        android:layout_gravity="center_horizontal"
-        android:paddingBottom="16dp" />
+        android:textStyle="bold"
+        android:paddingBottom="8dp"
+        android:layout_marginTop="7dp"/>
 
 
     </LinearLayout>
@@ -37,43 +40,63 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
 
         <ImageView
+            android:id="@+id/petpfImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/ic_pfadd2"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:layout_margin="8dp"/>
         <EditText
             android:id="@+id/petNameEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="이름" />
+            android:hint="이름"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"/>
 
         <EditText
             android:id="@+id/petAgeEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="생년월일" />
+            android:hint="생년월일 ex) 2012.12.30"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"/>
+
         <EditText
             android:id="@+id/petBreedEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="품종" />
+            android:hint="품종"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"/>
         <EditText
+            android:id="@+id/petWeightEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="몸무게" />
+            android:hint="몸무게"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"/>
         <EditText
             android:id="@+id/petGenderEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="20dp"
-            android:hint="성별" />
+            android:hint="성별"
+            android:background="#FFFFFF"
+            android:padding="8dp"
+            android:layout_marginTop="5dp"/>
 
         <Button
             android:id="@+id/saveBtn"
@@ -82,7 +105,8 @@
             android:text="저장하기"
             android:backgroundTint="#FBF0C2"
             android:layout_gravity="center_horizontal"
-            android:textColor="@android:color/black"/>
+            android:textColor="@android:color/black"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 
