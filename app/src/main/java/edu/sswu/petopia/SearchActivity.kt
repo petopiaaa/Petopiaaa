@@ -143,7 +143,14 @@ class SearchActivity : AppCompatActivity() {
             if (gangbuk.isChecked) selectedRegions.add("강북구")
 
             updateSelectedFilters()
-            viewModel.filterByRegion(selectedRegions) // ViewModel에 필터 적용
+
+            // 현재 키워드 가져오기
+            val searchBar: EditText = findViewById(R.id.search_bar)
+            val currentKeyword = searchBar.text.toString()
+
+            // 키워드와 지역 필터를 동시에 적용
+            viewModel.filterByKeywordAndRegion(currentKeyword, selectedRegions)
+
             dialog.dismiss()
         }
 

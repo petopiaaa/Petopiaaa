@@ -43,9 +43,14 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
 
     fun filterByRegion(regions: List<String>) {
         val data = restaurants.value ?: return
-        filteredRestaurants.value = data.filter { it.location in regions }
+        if (regions.isEmpty()) {
+            // 선택된 지역이 없으면 전체 데이터를 반환
+            filteredRestaurants.value = data
+        } else {
+            // 선택된 지역이 있을 경우 해당 지역만 필터링
+            filteredRestaurants.value = data.filter { it.location in regions }
+        }
     }
-
     fun filterByKeyword(keyword: String) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { it.name.contains(keyword, ignoreCase = true) }
@@ -59,9 +64,12 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
     fun filterByKeywordAndRegion(keyword: String, regions: List<String>) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { restaurant ->
-            restaurant.name.contains(keyword, ignoreCase = true) && (restaurant.location in regions)
+            // 키워드와 지역 필터 동시 적용
+            restaurant.name.contains(keyword, ignoreCase = true) &&
+                    (regions.isEmpty() || restaurant.location in regions)
         }
     }
+
 
     fun filterByCategoryAndRegion(category: String, regions: List<String>) {
         val data = restaurants.value ?: return

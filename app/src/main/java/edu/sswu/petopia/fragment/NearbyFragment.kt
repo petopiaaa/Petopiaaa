@@ -179,7 +179,7 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
         marker.position = LatLng(restaurant.latitude, restaurant.longitude)
         marker.map = naverMap
         marker.captionText = restaurant.name
-        marker.tag = restaurant.category // 마커에 Restaurant 객체 저장
+        marker.tag = restaurant// 마커에 Restaurant 객체 저장
 
         marker.icon = when (restaurant.category) {
             "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)
@@ -211,11 +211,13 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
     private fun filterMarkers(category: String?) {
         markers.forEach { it.map = null }
         markers.forEach { marker ->
-            if (category == null || marker.tag == category) {
+            val restaurant = marker.tag as? Restaurants
+            if (category == null || restaurant?.category == category) {
                 marker.map = naverMap
             }
         }
     }
+
 
     private fun hasLocationPermission(): Boolean {
         val fineLocation = ContextCompat.checkSelfPermission(
