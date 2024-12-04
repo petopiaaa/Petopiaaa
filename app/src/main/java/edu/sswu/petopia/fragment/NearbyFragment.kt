@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -24,7 +25,6 @@ import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import edu.sswu.petopia.R
 
-// Firestore 데이터 모델 정의
 data class Restaurants(
     val name: String = "",
     val address: String? = null,
@@ -46,7 +46,7 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
     private lateinit var infoName: TextView
     private lateinit var infoAddress: TextView
     private lateinit var infoCategory: TextView
-
+    private val markers = mutableListOf<Marker>() // 생성된 마커 저장 리스트
     private var selectedMarker: Marker? = null // 선택된 마커 추적 변수
 
     // 위치 권한 요청 런처
@@ -81,6 +81,21 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
         infoName = view.findViewById(R.id.info_name)
         infoAddress = view.findViewById(R.id.info_address)
         infoCategory = view.findViewById(R.id.info_category)
+
+        // 스크롤 가능한 필터 버튼 초기화
+        val filterButtons = listOf(
+            Pair(view.findViewById<Button>(R.id.filter_all), null),
+            Pair(view.findViewById<Button>(R.id.filter_korean), "한식"),
+            Pair(view.findViewById<Button>(R.id.filter_chinese), "중식"),
+            Pair(view.findViewById<Button>(R.id.filter_japanese), "일식"),
+            Pair(view.findViewById<Button>(R.id.filter_cafe), "카페"),
+            Pair(view.findViewById<Button>(R.id.filter_western), "양식"),
+            Pair(view.findViewById<Button>(R.id.filter_pub), "주점")
+        )
+
+        filterButtons.forEach { (button, category) ->
+            button.setOnClickListener { filterMarkers(category) }
+        }
 
         if (!hasLocationPermission()) {
             requestPermissionLauncher.launch(
@@ -134,14 +149,14 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
             }
     }
 
-    private fun addMarker(restaurants: Restaurants) {
+    private fun addMarker(restaurant: Restaurants) {
         val marker = Marker()
-        marker.position = LatLng(restaurants.latitude, restaurants.longitude)
+        marker.position = LatLng(restaurant.latitude, restaurant.longitude)
         marker.map = naverMap
-        marker.captionText = restaurants.name
+        marker.captionText = restaurant.name
+        marker.tag = restaurant.category // 마커에 카테고리 태그 추가
 
-        // 카테고리에 따른 기본 아이콘 설정
-        marker.icon = when (restaurants.category) {
+        marker.icon = when (restaurant.category) {
             "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)
             "카페" -> OverlayImage.fromResource(R.drawable.ic_cafe)
             "일식" -> OverlayImage.fromResource(R.drawable.ic_japanese_food)
@@ -151,35 +166,29 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
             else -> OverlayImage.fromResource(R.drawable.ic_default)
         }
 
-        // 마커 클릭 이벤트
-        marker.setOnClickListener {
-            // 이전 선택된 마커 초기화
-            selectedMarker?.let {
-                it.icon = when (restaurants.category) {
-                    "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)
-                    "카페" -> OverlayImage.fromResource(R.drawable.ic_cafe)
-                    "일식" -> OverlayImage.fromResource(R.drawable.ic_japanese_food)
-                    "한식" -> OverlayImage.fromResource(R.drawable.ic_korean_food)
-                    "중식" -> OverlayImage.fromResource(R.drawable.ic_chinese_food)
-                    "주점" -> OverlayImage.fromResource(R.drawable.ic_pub)
-                    else -> OverlayImage.fromResource(R.drawable.ic_default)
-                }
-            }
+        markers.add(marker)
 
-            // 선택된 마커 강조
+        marker.setOnClickListener {
             marker.icon = OverlayImage.fromResource(R.drawable.ic_selected)
             selectedMarker = marker
 
-            // 카메라 이동
             val cameraUpdate = CameraUpdate.scrollTo(marker.position)
             naverMap.moveCamera(cameraUpdate)
 
-            // 정보 패널 업데이트
             infoPanel.visibility = View.VISIBLE
-            infoName.text = restaurants.name
-            infoAddress.text = restaurants.address ?: "주소 없음"
-            infoCategory.text = restaurants.category ?: "카테고리 없음"
+            infoName.text = restaurant.name
+            infoAddress.text = restaurant.address ?: "주소 없음"
+            infoCategory.text = restaurant.category ?: "카테고리 없음"
             true
+        }
+    }
+
+    private fun filterMarkers(category: String?) {
+        markers.forEach { it.map = null }
+        markers.forEach { marker ->
+            if (category == null || marker.tag == category) {
+                marker.map = naverMap
+            }
         }
     }
 

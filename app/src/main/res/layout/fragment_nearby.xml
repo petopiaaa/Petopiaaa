@@ -2,12 +2,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 상단 필터 버튼 -->
+    <HorizontalScrollView
+        android:id="@+id/filter_buttons_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="8dp"
+        android:elevation="4dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/filter_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/filter_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="전체" />
+
+            <Button
+                android:id="@+id/filter_korean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="한식" />
+
+            <Button
+                android:id="@+id/filter_chinese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="중식" />
+
+            <Button
+                android:id="@+id/filter_japanese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="일식" />
+
+            <Button
+                android:id="@+id/filter_cafe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="카페" />
+
+            <Button
+                android:id="@+id/filter_western"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="양식" />
+
+            <Button
+                android:id="@+id/filter_pub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="주점" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
     <!-- 네이버 지도 -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/naver_map_fragment"
         android:name="com.naver.maps.map.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="56dp" />
 
     <!-- 하단 정보 패널 -->
     <LinearLayout
@@ -17,7 +85,8 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:visibility="gone"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:layout_gravity="bottom">
 
         <TextView
             android:id="@+id/info_name"
@@ -41,6 +110,5 @@
             android:textSize="14sp"
             android:textColor="@color/black" />
     </LinearLayout>
-
 
 </FrameLayout>

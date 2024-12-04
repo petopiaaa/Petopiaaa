@@ -20,4 +20,12 @@
     <string name="keyword_outdoor">공간</string>
     <string name="keyword_weight">몸무게</string>
     <string name="recommendation_title">추천 장소</string>
+    <string name="filter_all">전체</string>
+    <string name="filter_korean">한식</string>
+    <string name="filter_chinese">중식</string>
+    <string name="filter_japanese">일식</string>
+    <string name="filter_cafe">카페</string>
+    <string name="filter_western">양식</string>
+    <string name="filter_pub">주점</string>
+
 </resources>
