@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_profile_main"
+                android:src="@drawable/ic_dog"
                 android:contentDescription="Profile Image"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/circle_background" />
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-medium"
-                android:text="  Hi, 희원님!"
+                android:text="안녕하세요:) 어디로 갈까요?"
                 android:textColor="#000"
                 android:textSize="18sp" />
 

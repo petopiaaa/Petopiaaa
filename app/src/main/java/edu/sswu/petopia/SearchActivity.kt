@@ -133,7 +133,14 @@ class SearchActivity : AppCompatActivity() {
 
     private fun navigateToDetail(restaurant: Restaurant) {
         val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra("restaurant_id", restaurant.id)
+        intent.putExtra("name", restaurant.name)
+        intent.putExtra("menu", restaurant.menu)
+        intent.putExtra("address", restaurant.address)
+        intent.putExtra("address22", restaurant.address22)
+        intent.putExtra("hours", restaurant.hours)
+        intent.putExtra("contact", restaurant.contact)
+        intent.putExtra("description", restaurant.description)
+        intent.putExtra("image_url", restaurant.imageUrl)
         startActivity(intent)
     }
 
