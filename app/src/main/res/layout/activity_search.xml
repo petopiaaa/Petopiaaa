@@ -1,6 +1,7 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!-- 검색창 -->
     <LinearLayout
@@ -12,6 +13,16 @@
         android:background="#FFFFFF"
         android:elevation="4dp">
 
+        <!-- 뒤로 가기 버튼 -->
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_back"
+            android:contentDescription="Back Button"
+            android:padding="8dp" />
+
+        <!-- 검색창 -->
         <EditText
             android:id="@+id/search_bar"
             android:layout_width="0dp"
@@ -36,7 +47,6 @@
         android:id="@+id/category_filter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/search_layout"
         android:padding="8dp"
         android:background="#FFFFFF"
         android:elevation="2dp">
@@ -105,13 +115,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/category_filter"
         android:padding="8dp"
         android:background="#F9F9F9">
 
         <Button
             android:id="@+id/btn_region"
-            android:layout_width="8dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="지역" />
@@ -129,14 +138,27 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="몸무게" />
+
     </LinearLayout>
+
+    <!-- 선택된 필터 -->
+    <TextView
+        android:id="@+id/selected_filters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:visibility="gone"
+        android:background="#F3F3F3"
+        android:text="선택된 필터: 없음" />
 
     <!-- RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/result_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/filter_layout"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:padding="8dp"
         android:clipToPadding="false" />
-</RelativeLayout>
+</LinearLayout>

@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- 타이틀 -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -13,39 +14,39 @@
         android:textStyle="bold"
         android:layout_marginBottom="8dp" />
 
-    <RadioGroup
-        android:layout_width="match_parent"
+    <!-- 체크박스: 도봉구 -->
+    <CheckBox
+        android:id="@+id/checkbox_dobong"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:text="도봉구" />
 
-        <RadioButton
-            android:id="@+id/region_dobong"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="도봉구" />
+    <!-- 체크박스: 성북구 -->
+    <CheckBox
+        android:id="@+id/checkbox_seongbuk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="성북구" />
 
-        <RadioButton
-            android:id="@+id/region_seongbuk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="성북구" />
+    <!-- 체크박스: 노원구 -->
+    <CheckBox
+        android:id="@+id/checkbox_nowon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="노원구" />
 
-        <RadioButton
-            android:id="@+id/region_nowon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="노원구" />
+    <!-- 체크박스: 강북구 -->
+    <CheckBox
+        android:id="@+id/checkbox_gangbuk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="강북구" />
 
-        <RadioButton
-            android:id="@+id/region_gangbuk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="강북구" />
-    </RadioGroup>
-
+    <!-- 적용 버튼 -->
     <Button
         android:id="@+id/apply_region_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="적용하기" />
+        android:text="적용하기"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

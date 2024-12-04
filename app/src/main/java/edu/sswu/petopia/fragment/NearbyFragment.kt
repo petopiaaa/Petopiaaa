@@ -1,6 +1,7 @@
 package edu.sswu.petopia.fragment
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.naver.maps.map.util.FusedLocationSource
 import edu.sswu.petopia.R
+import edu.sswu.petopia.DetailActivity // DetailActivity 임포트 추가
 
 data class Restaurants(
     val name: String = "",
@@ -81,6 +83,29 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
         infoName = view.findViewById(R.id.info_name)
         infoAddress = view.findViewById(R.id.info_address)
         infoCategory = view.findViewById(R.id.info_category)
+
+        // 패널 클릭 시 DetailActivity로 이동
+        infoPanel.setOnClickListener {
+            selectedMarker?.let { marker ->
+                val restaurant = marker.tag as? Restaurants
+                if (restaurant != null) {
+                    val intent = Intent(requireContext(), DetailActivity::class.java).apply {
+                        putExtra("name", restaurant.name)
+                        putExtra("menu", restaurant.menu)
+                        putExtra("address", restaurant.address)
+                        putExtra("category", restaurant.category)
+                        putExtra("description", restaurant.description)
+                        putExtra("hours", restaurant.hours)
+                        putExtra("contact", restaurant.contact)
+                        putExtra("latitude", restaurant.latitude)
+                        putExtra("longitude", restaurant.longitude)
+                    }
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(requireContext(), "식당 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
 
         // 스크롤 가능한 필터 버튼 초기화
         val filterButtons = listOf(
@@ -154,7 +179,7 @@ class NearbyFragment : Fragment(), OnMapReadyCallback {
         marker.position = LatLng(restaurant.latitude, restaurant.longitude)
         marker.map = naverMap
         marker.captionText = restaurant.name
-        marker.tag = restaurant.category // 마커에 카테고리 태그 추가
+        marker.tag = restaurant // 마커에 Restaurant 객체 저장
 
         marker.icon = when (restaurant.category) {
             "양식" -> OverlayImage.fromResource(R.drawable.ic_western_food)

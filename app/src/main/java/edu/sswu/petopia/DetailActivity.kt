@@ -5,8 +5,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import coil.request.ImageRequest
-import coil.request.ErrorResult
 
 class DetailActivity : AppCompatActivity() {
 
@@ -33,6 +31,8 @@ class DetailActivity : AppCompatActivity() {
         val contact = intent.getStringExtra("contact")
         val description = intent.getStringExtra("description")
         val imageUrl = intent.getStringExtra("image_url")
+        val latitude = intent.getDoubleExtra("latitude", 0.0) // 위도
+        val longitude = intent.getDoubleExtra("longitude", 0.0) // 경도
 
         // 데이터 설정
         restaurantName.text = name
@@ -51,5 +51,10 @@ class DetailActivity : AppCompatActivity() {
 
         // 뒤로가기 버튼
         backButton.setOnClickListener { finish() }
+
+        // 추가: 위도 및 경도 정보 로그 출력 (디버깅 용도)
+        if (latitude != 0.0 && longitude != 0.0) {
+            println("Restaurant Location: Latitude = $latitude, Longitude = $longitude")
+        }
     }
 }

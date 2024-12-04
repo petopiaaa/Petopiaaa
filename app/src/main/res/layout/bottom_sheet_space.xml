@@ -13,24 +13,24 @@
         android:textStyle="bold"
         android:layout_marginBottom="8dp" />
 
-    <RadioGroup
-        android:id="@+id/space_radio_group"
+    <!-- CheckBoxes for multiple selection -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/space_indoor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="실내" />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/space_outdoor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="실외" />
-    </RadioGroup>
+    </LinearLayout>
 
     <Button
         android:id="@+id/apply_space_button"

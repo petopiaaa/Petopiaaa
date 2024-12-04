@@ -25,7 +25,7 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
                         hours = document.getString("hours") ?: "",
                         address = document.getString("address") ?: "",
                         address22 = document.getString("address22") ?: "",
-                        menu= document.getString("menu") ?: "",
+                        menu = document.getString("menu") ?: "",
                         contact = document.getString("contact") ?: "",
                         imageUrl = document.getString("image_url") ?: ""
                     )
@@ -41,6 +41,11 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
         filteredRestaurants.value = data.filter { it.category == category }
     }
 
+    fun filterByRegion(regions: List<String>) {
+        val data = restaurants.value ?: return
+        filteredRestaurants.value = data.filter { it.location in regions }
+    }
+
     fun filterByKeyword(keyword: String) {
         val data = restaurants.value ?: return
         filteredRestaurants.value = data.filter { it.name.contains(keyword, ignoreCase = true) }
@@ -51,4 +56,17 @@ class SearchActivityViewModel(application: Application) : AndroidViewModel(appli
         filteredRestaurants.value = data // 전체 데이터를 설정
     }
 
+    fun filterByKeywordAndRegion(keyword: String, regions: List<String>) {
+        val data = restaurants.value ?: return
+        filteredRestaurants.value = data.filter { restaurant ->
+            restaurant.name.contains(keyword, ignoreCase = true) && (restaurant.location in regions)
+        }
+    }
+
+    fun filterByCategoryAndRegion(category: String, regions: List<String>) {
+        val data = restaurants.value ?: return
+        filteredRestaurants.value = data.filter { restaurant ->
+            restaurant.category == category && (restaurant.location in regions)
+        }
+    }
 }

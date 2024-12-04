@@ -26,7 +26,7 @@
         android:text="1kg"
         android:layout_marginTop="8dp" />
     <Button
-        android:id="@+id/apply_region_button"
+        android:id="@+id/apply_weight_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="적용하기"
