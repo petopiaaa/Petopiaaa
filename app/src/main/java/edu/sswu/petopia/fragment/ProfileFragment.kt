@@ -62,6 +62,7 @@ class ProfileFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
         // UI 요소 참조
+
         userImageView = view.findViewById(R.id.userImageView)
         petImageView = view.findViewById(R.id.petImageView)
         nameTextView = view.findViewById(R.id.nameTextView)
@@ -70,6 +71,9 @@ class ProfileFragment : Fragment() {
         petBreedTextView = view.findViewById(R.id.petBreedTextView)
         petGenderTextView = view.findViewById(R.id.petGenderTextView)
         petAgeTextView = view.findViewById(R.id.petAgeTextView)
+
+        val userEmail = auth.currentUser?.email ?: "example@example.com"
+        emailTextView.text = userEmail
 
         // 버튼 및 클릭 리스너 설정
         view.findViewById<ImageView>(R.id.editUser).setOnClickListener {
